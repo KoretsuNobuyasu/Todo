@@ -1,7 +1,5 @@
-#! usr/bin/env python3
-# -*- coding:utf-8 -*-
-path = './todo.txt'
-finish_path = './todo_finish.txt'
+path = 'todo/todo.txt'
+finish_path = 'todo/todo_finish.txt'
 
 class Todo:
 	def __init__(self, title):
@@ -107,29 +105,3 @@ def retry(task):
 			f.write(row)
 	with open(path, mode='a+') as f:
 		f.write(info)
-
-
-
-def main():
-	while True:
-		show()
-		mode = choose_mode()
-		if(mode == 'exit'):
-			print('break break break !!!')
-			break
-		else:
-			title = str(input('enter the title =>'))
-			task = Todo(title)
-			if(mode == 'add'):
-				add(task)
-			elif(mode == 'finish'):
-				finish(task)
-			elif(mode == 'retry'):
-				retry(task)
-			else:
-				pass
-	return 0
-	
-	
-if __name__ == '__main__':
-	main()
