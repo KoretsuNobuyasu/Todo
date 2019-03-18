@@ -11,20 +11,22 @@ import tkinter
 
 class Example(object):
 	def main(self):
-		root = tkinter.Tk()
-		root.title(u"Todoリスト")
-		root.geometry("750x750")
-		tkinter.Label(text=u'Mac OS Mojaveを使用している場合、windowをリサイズしないとボタン内の文字が読めません').pack()
+		self.root = tkinter.Tk()
+		self.root.title(u"Todoリスト")
+		self.root.geometry("750x750")
+		self.var = tkinter.StringVar()
+		self.var.set('Mac OS Mojaveを使用している場合、windowをリサイズしないとボタン内の文字が読めません')
+		tkinter.Label(textvariable=self.var).pack()
 		label = show()
 		for todo_label in label:
 			static = tkinter.Label(text=todo_label)
 			static.pack()
-		frame = tkinter.Frame(root, bd=2, relief="ridge")
+		frame = tkinter.Frame(self.root, bd=2, relief="ridge")
 		frame.pack(fill="x")
-		tkinter.Button(frame, bg='black', text=u"add").pack()
+		tkinter.Button(frame, bg='black', text=u"add", command=self.pushed_add).pack()
 		tkinter.Button(frame, text="finish").pack()
 		tkinter.Button(frame, text="retry").pack()
-		tkinter.Button(frame, text="exit", command=root.destroy).pack()
+		tkinter.Button(frame, text="exit", command=self.root.destroy).pack()
 		
 		while True:	
 			
@@ -43,9 +45,15 @@ class Example(object):
 					retry(task)
 				else:
 					pass
-		#root.mainloop()
+		self.root.mainloop()
 		
 		return 0
+
+	def pushed_add(self):
+		tkinter.Label(self.root, text="pushed add").pack()
+		self.var.set("変更")
+		self.root.update()
+
 
 if __name__ == "__main__":
 	an_example = Example()
