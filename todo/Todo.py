@@ -24,16 +24,23 @@ class Todo:
 
 	
 def show():
+	label = ["_________ToDoリスト__________"]
 	print('_________ToDoリスト__________')
 	with open(path) as f:
+		label.append(f.read())
 		print(f.read())
 	print('____________________________')
+	label.append('____________________________')
 	print('\n'*5)
 
 	print('_______終了済みTodoリスト_______')
+	label.append("_______終了済みTodoリスト_______")
 	with open(finish_path) as f:
 		print(f.read())
+		label.append(f.read())
 	print('______________________________')
+	label.append('______________________________')
+	return label
 	
 	
 	
